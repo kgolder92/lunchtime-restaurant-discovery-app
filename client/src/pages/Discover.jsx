@@ -17,7 +17,11 @@ const Discover = () => {
     searchMode
     searchQuery
   **/
+  const { location } = useUserLocation();
+  const { results } = usePlacesSearch(location);
 
+  //handle loading
+  console.log("RESULTS: ", results);
   return (
     //favorites context?
     <main className={styles.container}>
