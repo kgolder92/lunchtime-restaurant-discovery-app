@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 8px;
+  height: 64px;
+}
+
+.leftContainer {
+  display: flex;
+  align-items: center;
+}
+.rightContainer {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}

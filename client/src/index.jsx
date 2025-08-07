@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import axios from "axios";
+import Discover from "./pages/Discover";
 import "./style.css";
 
 const App = () => {
@@ -11,7 +12,7 @@ const App = () => {
       .catch((err) => console.error(err));
   }, []);
 
-  return <h1 className="title">Hey hey testerr</h1>;
+  return <Discover />;
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
