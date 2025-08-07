@@ -38,5 +38,5 @@ export const usePlacesSearch = (location) => {
     fetchData();
   }, [location]);
 
-  return { results, error }; //loading, error
+  return { results, error, loading };
 };

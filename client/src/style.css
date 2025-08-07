@@ -1,6 +1,8 @@
-.title {
-  color: darkcyan;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin-top: 50px;
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f2f2ef;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #333;
 }

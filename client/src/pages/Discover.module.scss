@@ -1,15 +1,20 @@
-.container {
-  background-color: #efefec;
-  padding: 0;
+.discover {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  height: 100vh; //todo
+  flex: 1;
+  overflow: hidden;
 }
 
-.layout {
-  display: flex;
-  gap: 1rem;
-  padding: 1rem;
-  justify-content: space-evenly;
+.discover__sidebar {
+  width: 35%;
+  background-color: #efefec;
+  overflow-y: auto;
+}
+
+.discover__map {
+  flex: 1;
+  background-color: #efefec; // placeholder if map hasn't loaded
+}
+
+.discover__error {
+  color: red;
 }
