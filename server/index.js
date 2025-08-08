@@ -15,11 +15,6 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
-// app.get("/restaurants/test", (req, res) => {
-//   console.log("*** IN SERVER ROUTE ***");
-//   res.json({ ok: true });
-// });
-
 //Nearby Search by default
 app.post("/api/restaurants/nearby", async (req, res) => {
   const { lat, lng } = req.body;
@@ -59,6 +54,50 @@ app.post("/api/restaurants/nearby", async (req, res) => {
   } catch (err) {
     console.error("API error", err);
     res.status(500).json({ error: "Failed to fetch restaurants" });
+  }
+});
+
+app.post("/api/restaurants/search", async (req, res) => {
+  const { query, location } = req.body;
+  const API_KEY = process.env.GOOGLE_PLACES_API_KEY;
+
+  if (!query) return res.status(400).json({ error: "Missing query" });
+
+  try {
+    const response = await fetch(
+      "https://places.googleapis.com/v1/places:searchText",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Goog-Api-Key": API_KEY,
+          "X-Goog-FieldMask":
+            "places.displayName,places.location,places.rating,places.userRatingCount,places.formattedAddress,places.photos",
+        },
+        body: JSON.stringify({
+          textQuery: query,
+          locationBias: location
+            ? {
+                circle: {
+                  center: {
+                    latitude: location.lat,
+                    longitude: location.lng,
+                  },
+                  radius: 5000,
+                },
+              }
+            : undefined,
+          openNow: false,
+          maxResultCount: 20,
+        }),
+      }
+    );
+
+    const data = await response.json();
+    res.json(data);
+  } catch (err) {
+    console.error("Text Search API Error");
+    res.status(500).json({ error: "Text search failed" });
   }
 });
 

@@ -1,0 +1,16 @@
+.search__form {
+  width: 100%;
+}
+
+.search__input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+
+  &:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+}

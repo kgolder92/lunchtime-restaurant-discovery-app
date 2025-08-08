@@ -7,11 +7,11 @@
   height: 64px;
 }
 
-.leftContainer {
+.header__leftContainer {
   display: flex;
   align-items: center;
 }
-.rightContainer {
+.header__rightContainer {
   flex: 1;
   display: flex;
   justify-content: flex-end;

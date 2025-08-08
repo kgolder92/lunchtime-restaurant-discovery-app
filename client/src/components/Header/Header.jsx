@@ -1,15 +1,14 @@
 import React from "react";
 import styles from "./Header.module.scss";
-//search bar
 
-const Header = () => {
+const Header = ({ children }) => {
   return (
     <header className={styles.header}>
-      <div className={styles.leftContainer}>
+      <div className={styles.header__leftContainer}>
         <img src="" alt="AllTrails logo" />
         <span>at lunch</span>
       </div>
-      <div className={styles.rightContainer}>search bar</div>
+      <div className={styles.header__rightContainer}>{children}</div>
     </header>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
+import { useUserLocation } from "./hooks/useUserLocation";
 import ReactDOM from "react-dom/client";
-import Header from "./components/Header/Header.jsx";
+// import Header from "./components/Header/Header.jsx";
 import Discover from "./pages/Discover";
 import "./style.css";
 import "./styles/global.scss";
@@ -13,10 +14,15 @@ const App = () => {
   //     .catch((err) => console.error(err));
   // }, []);
 
+  const { location } = useUserLocation();
   return (
     <main className={StyleSheet.appContainer}>
-      <Header />
-      <Discover />;
+      {/* <Header /> */}
+      {location ? (
+        <Discover initialLocation={location} />
+      ) : (
+        <div>Loading...</div>
+      )}
     </main>
   );
 };
