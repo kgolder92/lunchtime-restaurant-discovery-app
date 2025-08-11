@@ -10,6 +10,7 @@ import MapComponent from "../components/Map/MapComponent";
 
 const Discover = ({ initialLocation, isReady }) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedPlaceId, setSelectedPlaceId] = useState(null);
 
   const { results, error, loading } = usePlacesSearch({
     location: initialLocation,
@@ -24,6 +25,10 @@ const Discover = ({ initialLocation, isReady }) => {
       ? { lat: places[0].location.latitude, lng: places[0].location.longitude }
       : initialLocation;
 
+  const handleSelectPlace = (placeId) => {
+    console.log(placeId, "PLACEID");
+    setSelectedPlaceId(placeId);
+  };
   console.log("RESULTS: ", results);
   return (
     //favorites context?
@@ -38,11 +43,18 @@ const Discover = ({ initialLocation, isReady }) => {
             <RestaurantList
               restaurants={results.places || []}
               loading={loading}
+              selectedPlaceId={selectedPlaceId}
+              onSelectPlace={handleSelectPlace}
             />
           </div>
         </div>
         <div className={styles.discover__map}>
-          <MapComponent center={center} places={places} />
+          <MapComponent
+            center={center}
+            places={places}
+            selectedPlaceId={selectedPlaceId}
+            onSelectPlace={handleSelectPlace}
+          />
         </div>
       </div>
     </main>

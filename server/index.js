@@ -26,7 +26,7 @@ app.post("/api/restaurants/nearby", async (req, res) => {
 
   try {
     const resp = await fetch(
-      `https://places.googleapis.com/v1/places:searchNearby?key=${API_KEY}&fields=places.displayName,places.location,places.rating,places.userRatingCount,places.formattedAddress,places.photos`,
+      `https://places.googleapis.com/v1/places:searchNearby?key=${API_KEY}&fields=places.displayName,places.location,places.rating,places.userRatingCount,places.formattedAddress,places.photos,places.id`,
       {
         method: "POST",
         headers: {
@@ -72,7 +72,7 @@ app.post("/api/restaurants/search", async (req, res) => {
           "Content-Type": "application/json",
           "X-Goog-Api-Key": API_KEY,
           "X-Goog-FieldMask":
-            "places.displayName,places.location,places.rating,places.userRatingCount,places.formattedAddress,places.photos",
+            "places.displayName,places.location,places.rating,places.userRatingCount,places.formattedAddress,places.photos,places.id",
         },
         body: JSON.stringify({
           textQuery: query,

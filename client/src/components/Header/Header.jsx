@@ -5,8 +5,7 @@ const Header = ({ children }) => {
   return (
     <header className={styles.header}>
       <div className={styles.header__leftContainer}>
-        <img src="" alt="AllTrails logo" />
-        <span>at lunch</span>
+        <img src="/assets/logo.svg" alt="AllTrails logo" />
       </div>
       <div className={styles.header__rightContainer}>{children}</div>
     </header>
