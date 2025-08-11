@@ -41,7 +41,7 @@ app.post("/api/restaurants/nearby", async (req, res) => {
                 latitude: lat,
                 longitude: lng,
               },
-              radius: 500,
+              radius: 5000,
             },
           },
           rankPreference: "DISTANCE",
@@ -102,7 +102,6 @@ app.post("/api/restaurants/search", async (req, res) => {
 });
 
 app.get("/photos/:photoRef", async (req, res) => {
-  console.log("*** IN /photos ***");
   const { photoRef } = req.params;
   const API_KEY = process.env.GOOGLE_PLACES_API_KEY;
 

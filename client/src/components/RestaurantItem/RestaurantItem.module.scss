@@ -19,6 +19,17 @@
   margin-right: 1rem;
 }
 
+.item__ratingInfoContainer {
+  display: flex;
+  align-items: center;
+
+  .item__ratingIcon {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+  }
+}
+
 .item__info {
   display: flex;
   flex-direction: column;

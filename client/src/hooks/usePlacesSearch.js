@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 
-export const usePlacesSearch = ({ location, query }) => {
-  console.log("IN USEPLACESSEARCH");
+export const usePlacesSearch = ({ location, query, isReady }) => {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
   const endpoint = query
     ? "/api/restaurants/search"
     : "/api/restaurants/nearby";
 
   console.log("query", query);
+
   useEffect(() => {
     console.log("location passed in:", location);
-    if (!location || !location.lat || !location.lng) return;
 
+    if (!isReady || !location?.lat || !location?.lng) return;
     const fetchData = async () => {
       setLoading(true);
       setError(null);
@@ -41,7 +42,7 @@ export const usePlacesSearch = ({ location, query }) => {
     };
 
     fetchData();
-  }, [location, query]);
+  }, [isReady, location, query]);
 
   return { results, error, loading };
 };

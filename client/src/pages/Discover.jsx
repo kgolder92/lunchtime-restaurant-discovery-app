@@ -6,15 +6,23 @@ import RestaurantList from "../components/RestaurantList/RestaurantList";
 
 import Search from "../components/Search/Search";
 import Header from "../components/Header/Header";
+import MapComponent from "../components/Map/MapComponent";
 
-const Discover = ({ initialLocation }) => {
+const Discover = ({ initialLocation, isReady }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const { results, error, loading } = usePlacesSearch({
     location: initialLocation,
     query: searchQuery,
+    isReady,
   });
-  const center = results[0]?.location || { lat: 0, lng: 0 };
+
+  const places = results?.places || [];
+  console.log("places", places);
+  const center =
+    places.length > 0
+      ? { lat: places[0].location.latitude, lng: places[0].location.longitude }
+      : initialLocation;
 
   console.log("RESULTS: ", results);
   return (
@@ -24,10 +32,19 @@ const Discover = ({ initialLocation }) => {
         <Search onSearch={setSearchQuery} />
       </Header>
       {error && <div className={styles.discover__error}>{error}</div>}
-      <div className={styles.discover__sidebar}>
-        <RestaurantList restaurants={results.places || []} loading={loading} />
+      <div className={styles.discover__resultsContainer}>
+        <div className={styles.discover_listScrollContainer}>
+          <div className={styles.discover__list}>
+            <RestaurantList
+              restaurants={results.places || []}
+              loading={loading}
+            />
+          </div>
+        </div>
+        <div className={styles.discover__map}>
+          <MapComponent center={center} places={places} />
+        </div>
       </div>
-      <div className={styles.discover__map}>map</div>
     </main>
   );
 };

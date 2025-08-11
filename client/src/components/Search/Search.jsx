@@ -2,22 +2,41 @@ import React, { useState } from "react";
 import styles from "./Search.module.scss";
 
 const Search = ({ onSearch }) => {
-  const [input, setInput] = useState("");
+  const [query, setQuery] = useState("");
+
+  const handleInputChange = (e) => {
+    setQuery(e.target.value);
+  };
+
+  const triggerSearch = () => {
+    const trimmedQuery = query.trim();
+    onSearch(trimmedQuery); // empty string triggers nearby search for now
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      triggerSearch();
+    }
+  };
+
   return (
-    <form
-      className={styles.searchForm}
-      onSubmit={(e) => {
-        e.preventDefault();
-        onSearch(input.trim());
-      }}
-    >
+    <div className={styles.search}>
       <input
-        className={styles.searchInput}
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Search for restaurants..."
+        type="text"
+        placeholder="Search restaurants"
+        value={query}
+        onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
+        className={styles.search__input}
       />
-    </form>
+      <button
+        type="button"
+        onClick={triggerSearch}
+        className={styles.search__button}
+      >
+        Search
+      </button>
+    </div>
   );
 };
 

@@ -1,6 +1,9 @@
 import path from "path";
+import webpack from "webpack";
+import dotenv from "dotenv";
 import { fileURLToPath } from "url";
 
+dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -32,6 +35,13 @@ export default {
   resolve: {
     extensions: [".js", ".jsx"],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      "process.env.GOOGLE_PLACES_API_KEY": JSON.stringify(
+        process.env.GOOGLE_PLACES_API_KEY
+      ),
+    }),
+  ],
   mode: "development",
   watch: true,
 };

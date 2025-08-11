@@ -1,19 +1,33 @@
 .discover {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  height: 100vh;
   overflow: hidden;
 }
 
-.discover__sidebar {
-  width: 35%;
-  background-color: #efefec;
-  overflow-y: auto;
-}
-
-.discover__map {
+.discover__resultsContainer {
+  display: flex;
   flex: 1;
-  background-color: #efefec; // placeholder if map hasn't loaded
+  overflow: hidden;
+
+  .discover_listScrollContainer {
+    display: flex;
+    height: 100%;
+
+    .discover__list {
+      width: 35%;
+      background-color: #efefec;
+      flex: 1;
+      overflow-y: auto;
+    }
+  }
+
+  .discover__map {
+    flex: 1;
+    background-color: #efefec;
+    height: 100%;
+    overflow-y: hidden;
+  }
 }
 
 .discover__error {

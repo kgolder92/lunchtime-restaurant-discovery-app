@@ -24,9 +24,14 @@ const RestaurantItem = ({ restaurant }) => {
       />
       <div className={styles.item__info}>
         <h3 className={styles.item__name}>{restaurant.displayName.text}</h3>
-        <span>
-          ⭐ {restaurant.rating} ({restaurant.userRatingCount} reviews)
-        </span>
+        <div className={styles.item__ratingInfoContainer}>
+          <img
+            src="/assets/star.svg"
+            alt="star rating icon"
+            className={styles.item__ratingIcon}
+          />{" "}
+          {restaurant.rating} ({restaurant.userRatingCount} reviews)
+        </div>
         <span>Supporting text</span>
       </div>
       <div className={styles.item_bookmark}>
