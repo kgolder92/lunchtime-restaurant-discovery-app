@@ -8,3 +8,22 @@ body {
   font-family: sans-serif;
   background-color: #f3f2ef;
 }
+
+/* hide the close (x) button */
+.gm-ui-hover-effect {
+  display: none !important;
+}
+
+/* temove default InfoWindow background & padding */
+.gm-style-iw {
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* temove default padding inside the InfoWindow content */
+.gm-style-iw-d {
+  overflow: visible !important;
+  padding: 0 !important;
+  background: transparent !important;
+}

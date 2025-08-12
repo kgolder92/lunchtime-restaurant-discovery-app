@@ -4,38 +4,31 @@ import styles from "./Search.module.scss";
 const Search = ({ onSearch }) => {
   const [query, setQuery] = useState("");
 
-  const handleInputChange = (e) => {
-    setQuery(e.target.value);
-  };
-
   const triggerSearch = () => {
-    const trimmedQuery = query.trim();
-    onSearch(trimmedQuery); // empty string triggers nearby search for now
+    onSearch(query.trim());
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      triggerSearch();
-    }
+    if (e.key === "Enter") triggerSearch();
   };
 
   return (
     <div className={styles.search}>
+      <button
+        type="button"
+        onClick={triggerSearch}
+        className={styles.search__iconBtn}
+      >
+        <img src="/assets/search.svg" alt="search icon" />
+      </button>
       <input
         type="text"
         placeholder="Search restaurants"
         value={query}
-        onChange={handleInputChange}
+        onChange={(e) => setQuery(e.target.value)}
         onKeyDown={handleKeyDown}
         className={styles.search__input}
       />
-      <button
-        type="button"
-        onClick={triggerSearch}
-        className={styles.search__button}
-      >
-        Search
-      </button>
     </div>
   );
 };
