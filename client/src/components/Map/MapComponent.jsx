@@ -83,6 +83,12 @@ const MapComponent = ({
     const match = markersRef.current.find((m) => m.placeId === selectedPlaceId);
     if (!match) return;
 
+    // gnerate icon for a marker
+    // const getIcon = useCallback((isSelected) => ({
+    //   url: isSelected ? "/assets/pin-selected.svg" : "/assets/pin-resting.svg",
+    //   scaledSize: new window.google.maps.Size(32, 32),
+    // }), []);
+
     markersRef.current.forEach(({ marker, placeId }) => {
       marker.setIcon({
         url:
